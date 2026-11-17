@@ -35,6 +35,16 @@ node serve.js
 
 Open <http://localhost:8080>. To regenerate `data.json` after changing the CSV, install Python and run the preparation steps above.
 
+## Deploy to Vercel
+
+This is a static site; `vercel.json` tells Vercel to serve the HTML, CSS, JavaScript, and JSON files as static assets instead of treating the Python data preparation script as a serverless function. There is no build command or dependency installation step. The `data.json` file must remain in the project root because the dashboard loads it at runtime.
+
+1. Push this project to GitHub, including `index.html`, `app.js`, `styles.css`, and `data.json`.
+2. In [Vercel](https://vercel.com/new), import the GitHub repository and create a project.
+3. Choose **Other** as the framework preset and click **Deploy**. The checked-in `vercel.json` supplies the static asset configuration.
+
+Future pushes to the connected branch will trigger deployments automatically. You can also deploy from this folder with the Vercel CLI: run `npx vercel` and follow its prompts; use `npx vercel --prod` for a production deployment. The map boundaries load from an external GitHub URL, so the deployed site needs internet access for that map layer.
+
 ## Files
 
 - `election_results.csv` — source candidate records (download/prepare from ECI)
